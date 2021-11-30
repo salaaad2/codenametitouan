@@ -43,24 +43,33 @@ int main(void)
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
-        framecounter++;
         switch (currentScreen)
         {
             case LOGO:
             {
-
+                framecounter++;
+                if (framecounter >= 120) {
+                    currentScreen = TITLE;
+                }
             } break;
             case TITLE:
             {
-
+                if (IsKeyPressed(KEY_ENTER)) {
+                    currentScreen = GAMEPLAY;
+                }
             } break;
             case GAMEPLAY:
             {
-
+                if (IsKeyPressed(KEY_SPACE)) {
+                    currentScreen = ENDING;
+                }
             } break;
             case ENDING:
             {
-
+                if (IsKeyPressed(KEY_ENTER)) {
+                    currentScreen = LOGO;
+                    framecounter = 0;
+                }
             } break;
             default:
             { break; }
@@ -69,10 +78,41 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
+        ClearBackground(RAYWHITE);
+        switch (currentScreen)
+        {
+            case LOGO:
+            {
+                DrawText("COOL LOGO HERE", 20, 20, 42, LIGHTGRAY);
+                DrawText("Wait for two seconds", 40, 40, 42, LIGHTGRAY);
+            } break;
+            case TITLE:
+            {
+                DrawRectangle(0, 0, screenWidth, screenHeight, LIME);
+                DrawText("COOL TITLE HERE", 20, 20, 42, DARKGREEN);
+                DrawText("PRESS ENTER", 40, 40, 42, DARKGREEN);
+
+            } break;
+            case GAMEPLAY:
+            {
+                DrawRectangle(0, 0, screenWidth, screenHeight, MAGENTA);
+                DrawText("COOL GAME HERE", 20, 20, 42, MAROON);
+                DrawText("press spacebar", 40, 40, 42, MAROON);
+
+            } break;
+            case ENDING:
+            {
+                DrawRectangle(0, 0, screenWidth, screenHeight, BLUE);
+                DrawText("CONGRATULATIONS", 20, 20, 42, DARKBLUE);
+                DrawText("press enter to return to title", 40, 40, 42, DARKBLUE);
+
+            } break;
+            default:
+                break;
+        }
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
-
     // De-Initialization
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close window and OpenGL context
