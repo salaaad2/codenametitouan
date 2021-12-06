@@ -32,6 +32,6 @@ typedef enum gameState
 ** functions for different screens
 */
 int z_title( void );
-int z_gameplay(Camera camera, t_geo * geo);
+int z_gameplay(Camera * camera, t_geo * geo);
 
 #endif

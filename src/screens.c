@@ -8,10 +8,10 @@ z_title( void ) {
 }
 
 int
-z_gameplay(Camera camera, t_geo * geo) {
+z_gameplay(Camera * camera, t_geo * geo) {
     ClearBackground(RAYWHITE);
 
-    BeginMode3D(camera);
+    BeginMode3D(*camera);
 
     DrawPlane((Vector3){ 0.0f, 0.0f, 0.0f }, (Vector2){ 32.0f, 32.0f }, LIGHTGRAY); // Draw ground
     DrawCube((Vector3){ -16.0f, 2.5f, 0.0f }, 1.0f, 5.0f, 32.0f, BLUE);     // Draw a blue wall

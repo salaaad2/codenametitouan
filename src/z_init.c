@@ -87,7 +87,6 @@ int main(void)
             } break;
             case GAMEPLAY:
             {
-                printf("im here and Im stuck");
                 if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
                 {
                     currentScreen = ENDING;
@@ -107,6 +106,7 @@ int main(void)
         }
         //----------------------------------------------------------------------------------
 
+        UpdateCamera(&camera);
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
@@ -131,7 +131,8 @@ int main(void)
                 } break;
                 case GAMEPLAY:
                 {
-                    z_gameplay(camera, &geo);
+                printf("Im stuck\n");
+                    z_gameplay(&camera, &geo);
                 } break;
                 case ENDING:
                 {
