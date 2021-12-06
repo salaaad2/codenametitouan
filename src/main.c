@@ -55,7 +55,6 @@ main(void) {
     // Main game loop
     while (!WindowShouldClose())                // Detect window close button or ESC key
     {
-        printf("[%d][%ld]\n", currentState, frameCounter);
         frameCounter++;
         if (currentState == LOADING) {
             z_titlescreen(frameCounter, &currentState);
