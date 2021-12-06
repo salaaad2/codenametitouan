@@ -8,16 +8,12 @@
 *   Copyright (c) 2015 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
+#include "z_hdr.h"
 
+#include <stdio.h>
 #include "raylib.h"
 
 #define MAX_COLUMNS 20
-
-/*
-** structures and types used for various stuff
-*/
-typedef enum gameState
-{LOADING = 0, TITLE, DIFFICULTY, GAMEPLAY, END} gameState;
 
 int
 main(void) {
@@ -27,6 +23,7 @@ main(void) {
     const int screenHeight = 450;
 
     gameState currentState = LOADING;
+    long int frameCounter = 0;
 
     InitWindow(screenWidth, screenHeight, "codename titouan v0.0.1");
 
@@ -58,6 +55,11 @@ main(void) {
     // Main game loop
     while (!WindowShouldClose())                // Detect window close button or ESC key
     {
+        printf("[%d][%ld]\n", currentState, frameCounter);
+        frameCounter++;
+        if (currentState == LOADING) {
+            z_titlescreen(frameCounter, &currentState);
+        } else {
         // Update
         //----------------------------------------------------------------------------------
         UpdateCamera(&camera);                  // Update camera
@@ -94,6 +96,7 @@ main(void) {
 
         EndDrawing();
         //----------------------------------------------------------------------------------
+        }
     }
 
     // De-Initialization
