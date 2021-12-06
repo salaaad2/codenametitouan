@@ -13,16 +13,24 @@
 
 #define MAX_COLUMNS 20
 
-int main(void)
-{
-    // Initialization
-    //--------------------------------------------------------------------------------------
+/*
+** structures and types used for various stuff
+*/
+typedef enum gameState
+{LOADING = 0, TITLE, DIFFICULTY, GAMEPLAY, END} gameState;
+
+int
+main(void) {
+    /* Initialization*/
+    /*---------------*/
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera first person");
+    gameState currentState = LOADING;
 
-    // Define the camera to look into our 3d world (position, target, up vector)
+    InitWindow(screenWidth, screenHeight, "codename titouan v0.0.1");
+
+    /* Define the camera to look into our 3d world (position, target, up vector) */
     Camera camera = { 0 };
     camera.position = (Vector3){ 4.0f, 2.0f, 4.0f };
     camera.target = (Vector3){ 0.0f, 1.8f, 0.0f };
@@ -30,7 +38,7 @@ int main(void)
     camera.fovy = 60.0f;
     camera.projection = CAMERA_PERSPECTIVE;
 
-    // Generates some random columns
+    /* Generates some random columns */
     float heights[MAX_COLUMNS] = { 0 };
     Vector3 positions[MAX_COLUMNS] = { 0 };
     Color colors[MAX_COLUMNS] = { 0 };
